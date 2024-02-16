@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Мой интернет-магазин</title>
+    <style>
+        .card-img-top {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .side-menu {
+            padding: 15px;
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+        }
+        .card {
+            margin: 15px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <nav class="side-menu">
+                <h3><span th:text="'Категория'"</span></h3>
+                <ul>
+                    <li><p th:text="${product.getName()}"></p></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-9">
+            <div class="card">
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <img class="card-img-top" th:if="${!product.getImageUrl().isEmpty()}" th:src="${product.getImageUrl()}" alt="Card image cap">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="${product.getName()}"></h4>
+                            <p class="card-text" th:text="${product.getDescription()}"></p>
+                            <p th:text="${product.getPrice()}"></p>
+                            <a th:href="${'/cartfromcateg/add/' + product.getId()}" class="btn btn-outline-info" th:text="'Добавить'"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer" th:replace="fragments/footer :: footer">
+    <p>© 2024 Ваша компания. Все права защищены.</p>
+    <p>Следуйте за нами: Facebook | Twitter | Instagram</p>
+</div>
+
+</body>
+
+</html>

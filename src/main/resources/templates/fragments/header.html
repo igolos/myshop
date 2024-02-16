@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:fragment="header-css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css/}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.0.10/web-fonts-with-css/css/fontawesome-all.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title th:text="#{header.app.title}"></title>
+    <style>
+        .navbar-brand {
+            font-size: 30px; /* Увеличиваем размер шрифта */
+            font-weight: bold; /* Делаем шрифт жирным */
+        }
+    </style>
+</head>
+
+<body>
+<div th:fragment="header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">SHOP</a>
+        <div class="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarNavAltMarkup">
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <form class="form-inline ml-5 my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" title="search-product" placeholder="Поиск продукта">
+                    <button type="submit" class="btn my-2 my-sm-0 btn-outline-light">Поиск</button>
+                </form>
+
+                <ul  class="navbar-nav ml-auto">
+                    <!-- Эта кнопка будет видна только авторизованным пользователям -->
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/logout}">Выйти</a>
+                    </li>
+                    <!-- Эти кнопки будут видны только неавторизованным пользователям -->
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/login}">Войти</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/registration}">Регистрация</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/user/orders}">Заказы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/cart}"><img id="cart" th:src="@{images/cart.png}" width="44" height="44"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+
+</html>

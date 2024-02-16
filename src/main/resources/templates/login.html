@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.0.10/web-fonts-with-css/css/fontawesome-all.min.css}" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background: linear-gradient(to right, #8c8c8c, #b3b3b3, #d9d9d9); /* Серый градиент */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .container {
+            padding-top: 70px;
+        }
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+        .form-signin .form-control {
+            position: relative;
+            height: auto;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+        .form-signin input[type="submit"],
+        .nav-link { /* Добавляем .nav-link для изменения цвета кнопок навигации */
+            margin-top: 10px;
+            font-size: 24px;
+            padding: 15px;
+            border-radius: 5px;
+            transition: background-color 0.5s ease;
+            background-color: #6c757d; /* Серый цвет */
+            color: white;
+        }
+        .form-signin input[type="submit"]:hover,
+        .nav-link:hover { /* Добавляем .nav-link:hover для изменения цвета кнопок навигации при наведении */
+            background-color: #5a6268; /* Темно-серый цвет */
+            color: white;
+        }
+        .nav-link.home {
+            font-size: 0.75rem; /* Уменьшаем размер шрифта */
+            padding: 0.25rem 0.5rem; /* Уменьшаем отступы */
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="navbar-brand d-flex align-items-center">
+            <h1 class="mr-2">SHOP</h1>
+            <small>интернет-магазин</small>
+        </div>
+        <div class="d-flex">
+            <a class="nav-link home" href="/">Вернуться на главную</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <form autocomplete="off" th:action="@{/login}" class="form-signin" method="POST">
+        <h2 class="form-signin-heading" th:text="'Вход в систему SHOP'"></h2>
+        <label for="inputLogin" th:text="''"></label>
+        <input type="text" id="inputLogin" name="login" class="form-control" placeholder="Логин" required autofocus>
+        <label for="inputPassword" th:text="''"></label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Пароль" required>
+        <div th:if="${param.error}">
+            Неверный пароль
+        </div>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Запомнить меня
+            </label>
+        </div>
+        <button class="btn btn-lg btn-secondary btn-block" type="submit" th:text="'Войти'"></button>
+        <p class="mt-5 mb-3 text-muted" th:text="'Нет аккаунта?'"></p>
+        <a th:href="@{/registration}" class="btn btn-lg btn-secondary btn-block" th:text="'Регистрация'"></a>
+    </form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./apps.db;AUTO_SERVER=TRUE
+    username: ii
+    password: 1234567
+  h2:
+    console:
+      enabled: true
+  profiles:
+    active: h2
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+#  sql:
+#    init:
+#      mode: always
+
+server:
+  port: 8080
+
+
+logging:
+  level:
+    com.example.myshop: info
+    org.springframework.web: DEBUG
+  file:
+    path: userService.log
+
+service:
+  description: User service
+  version: 1.0 BETA
+# SPRING_PROFILES_ACTIVE=dev

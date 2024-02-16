@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .list-group-item a {
+            color: darkslategray;
+        }
+    </style>
+    <title>Мой интернет-магазин</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container mt-5">
+    <div class="row">
+        <nav class="col-md-3">
+            <h3>Категория:</h3>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="cat: ${products}">
+                    <a th:href="@{/searchByProduct/{id}(id=${cat.getId()})}" th:text="${cat.name}"></a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="col-md-9">
+            <div class="row" th:if="${!products.isEmpty()}">
+                <div class="col-md-4 mb-4" th:each="product : ${products}">
+                    <div class="card h-100">
+                        <img class="card-img-top" th:if="${!product.getImageUrl().isEmpty()}" th:src="${product.getImageUrl()}" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="${product.getName()}"></h4>
+                            <p class="card-text" th:text="${product.getDescription()}"></p>
+                        </div>
+                        <div class="card-footer">
+                            <p th:text="${product.getPrice()}+' р'"></p>
+                            <a th:href="${'/cart/add/' + product.getId()}" class="btn btn-lg btn-outline-info btn-block" th:text="'Добавить'"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span th:text="'Количество товаров: ' + ${productsCount}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

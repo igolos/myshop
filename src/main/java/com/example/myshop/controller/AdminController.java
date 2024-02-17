@@ -5,6 +5,7 @@ import com.example.myshop.repository.OrderProductMapRepository;
 import com.example.myshop.repository.OrderRepository;
 import com.example.myshop.repository.UserRepository;
 import com.example.myshop.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,24 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class AdminController {
-    @Autowired
-    private UserService userDetailsServiceImpl;
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private OrderRepository orderRepository;
+    private final UserService userDetailsServiceImpl;
 
-    @Autowired
-    private OrderProductMapRepository orderProductMapRepository;
+    private final UserRepository userRepository;
 
-    public AdminController(UserService userDetailsServiceImpl, UserRepository userRepository, OrderRepository orderRepository, OrderProductMapRepository orderProductMapRepository) {
-        this.userDetailsServiceImpl = userDetailsServiceImpl;
-        this.userRepository = userRepository;
-        this.orderRepository = orderRepository;
-        this.orderProductMapRepository = orderProductMapRepository;
-    }
+
+    private final OrderRepository orderRepository;
+
+
+    private final OrderProductMapRepository orderProductMapRepository;
+
 
     @GetMapping
     public String adminhome() {
@@ -72,7 +68,7 @@ public class AdminController {
     public String orderid(@PathVariable("id") Long id, Model model) {
         model.addAttribute("OrdersProducts", orderProductMapRepository.findAllByOrderid(id));
 
-        return "admin/adminorders//productoforder";
+        return "admin/productoforder";
     }
 
 

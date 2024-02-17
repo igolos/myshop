@@ -65,9 +65,9 @@
 <!--    <th>Операция</th>-->
     </thead>
       <tr th:each="order: ${AllOrders}">
-          <td th:text="${order.id}"</td>
-          <td th:text="${order.user}"</td>
-          <td> <a th:href="@{/admin/orders/view/{id}(id=${order.getId()})}" th:text="${order.status}"</a></td>
+          <td><a th:href="@{/admin/orders/view/{id}(id=${order.getId()})}" th:text="${order.id}"</a></td>
+          <td th:text="${order.user.getId()}"</td>
+          <td th:text="${order.status}"</td>
           <td th:text="${order.grand_total}"</td>
           <td th:text="${order.dateoforder}"</td>
           <td th:text="${order.description}"</td>

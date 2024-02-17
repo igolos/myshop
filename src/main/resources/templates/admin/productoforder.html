@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css/}" />
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.0.10/web-fonts-with-css/css/fontawesome-all.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>User cart</title>
     <style type="text/css">
@@ -25,7 +26,7 @@
 <body>
 
 <div class="container ADMIN ml-4">
-    <H4><a th:href="@{/admin}" th:text="#{ADMIN.PANEL}"></a></H4>
+    <H4><a th:href="@{/admin}" th:text="'Админка'"></a></H4>
 </div>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
@@ -36,32 +37,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/orders" th:text="#{user.order}"></a>
+                    <a class="nav-link" href="/user/orders" th:text="'Заказы'"></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/editprofile" th:text="#{user.edit.profile}"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user/review" th:text="#{Reviews}"></a>
+                    <a class="nav-link" href="/user/editprofile" th:text="'Изменить пользователя'"></a>
                 </li>
 
             </ul>
             <ul class="navbar-nav ml-auto">
 
-                <li class="navbar-text" th:text="#{header.logged}" sec:authorize="isAuthenticated()"></li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}" style="color: #1e90ff" th:text="${#httpServletRequest.getRemoteUser().toUpperCase()}"></a>
-                    <a class="nav-link" sec:authorize="hasRole('ROLE_USER')" th:href="@{/user}" style="color: #91a8ff;" th:text="${#httpServletRequest.getRemoteUser().toUpperCase()}"></a>
-                </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" th:href="@{/logout}" th:text="#{user.log_out}"></a>
-                </li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link" th:href="@{/login}" th:text="#{user.log_in}"></a>
-                </li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link" th:href="@{/registration}" th:text="#{register.button}"></a>
+                    <a class="nav-link" th:href="@{/logout}" th:text="'Выйти'"></a>
                 </li>
 
             </ul>
@@ -77,7 +64,7 @@
         <th>Цена</th>
         </thead>
         <tr th:each="ord: ${OrdersProducts}">
-            <td th:text="${ord.product}"</td>
+            <td th:text="${ord.product.getName()}"</td>
             <td th:text="${ord.quantity}"</td>
             <td th:text="${ord.price}"</td>
         </tr>

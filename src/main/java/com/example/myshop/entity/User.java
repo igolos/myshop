@@ -41,6 +41,8 @@ public class User implements UserDetails {
     @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$", message = "\n" + "The password must contain at least 6 characters, at least one number, special character, upper and lower case letter")
     private String password;
 
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 

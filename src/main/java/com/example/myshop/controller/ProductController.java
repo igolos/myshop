@@ -3,6 +3,7 @@ package com.example.myshop.controller;
 import com.example.myshop.entity.Product;
 import com.example.myshop.repository.ProductRepository;
 import com.example.myshop.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +15,19 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/product")
+@RequiredArgsConstructor
 public class ProductController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
-    @Autowired
-    protected ProductService productServiceImpl;
+
+    private final ProductService productServiceImpl;
 
 
 
-    @Autowired
-    protected ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
 
-    public ProductController(ProductService productServiceImpl,  ProductRepository productRepository) {
-        this.productServiceImpl = productServiceImpl;
-
-        this.productRepository = productRepository;
-
-    }
 
     @GetMapping
     public String viewProducts(Model model) {

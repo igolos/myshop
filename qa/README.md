@@ -35,14 +35,14 @@ These integration tests are designed to run against a running instance of the My
 1. Start the MyShop application:
 ```
 cd ..
-./mvnw spring-boot:run
+mvn spring-boot:run
 ```
 
 2. Wait for the application to fully start up.
 
 3. In a separate terminal, run the integration tests:
 ```
-./mvnw test -pl qa -DskipIntegrationTests=false
+mvn test -pl qa -DskipIntegrationTests=false
 ```
 
 Note: The `-DskipIntegrationTests=false` parameter is needed to run the integration tests since they are configured to be skipped by default in the regular build process.

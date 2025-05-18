@@ -2,6 +2,7 @@ package com.example.myshop.repository;
 
 import com.example.myshop.entity.Role;
 import com.example.myshop.entity.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -20,6 +21,11 @@ public class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @BeforeEach
+    void cleanUp() {
+        userRepository.deleteAll();
+    }
 
     private User createAndPersistUser(String name, String login) {
         Role role = new Role();

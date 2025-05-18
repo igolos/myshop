@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Shop API Integration Tests">
+    <test name="User Registration and Authentication Tests">
+        <classes>
+            <class name="com.example.myshop.integration.AuthenticationTest" />
+        </classes>
+    </test>
+    <test name="Product Management Tests">
+        <classes>
+            <class name="com.example.myshop.integration.ProductTest" />
+        </classes>
+    </test>
+    <test name="Shopping Cart Tests">
+        <classes>
+            <class name="com.example.myshop.integration.CartTest" />
+        </classes>
+    </test>
+    <test name="Order Management Tests">
+        <classes>
+            <class name="com.example.myshop.integration.OrderTest" />
+        </classes>
+    </test>
+</suite> 

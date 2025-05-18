@@ -1,6 +1,7 @@
 package com.example.myshop.repository;
 
 import com.example.myshop.entity.Product;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -19,6 +20,11 @@ public class ProductRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @BeforeEach
+    void cleanUp() {
+        productRepository.deleteAll();
+    }
 
     @Test
     public void whenFindById_thenReturnProduct() {

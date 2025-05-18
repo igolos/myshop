@@ -26,6 +26,7 @@ public class OrderProductMapRepositoryTest {
     @Autowired
     private OrderProductMapRepository orderProductMapRepository;
 
+
     private User createAndPersistUser(String name, String login) {
         Role role = new Role();
         role.setName("ROLE_USER");

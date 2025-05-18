@@ -11,9 +11,14 @@
 	<groupId>com.example</groupId>
 	<artifactId>myshop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>myshop</name>
+    <packaging>pom</packaging>
+    <name>myshop</name>
 	<description>Graduate project for Spring Boot</description>
-	<properties>
+    <modules>
+        <module>app</module>
+        <module>qa</module>
+    </modules>
+    <properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
@@ -92,6 +97,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.example.myshop.MyshopApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

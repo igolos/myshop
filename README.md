@@ -35,14 +35,20 @@ HTML/CSS/Thymeleaf - Frontend
 
 **Соберите проект:**
 ```
-./mvnw clean package
+mvn clean package -pl !qa
 ```
 **Запустите приложение:**
 
 ```
-./mvnw spring-boot:run
+mvn spring-boot:run 
 ```
-**Для готовых тестовых данных запустите все запросы в файле script.sql**
+
+**Выполнить интеграционные тесты в qa модуле**
+```
+mvn test -pl qa -DskipIntegrationTests=false
+```
+
+**Для готовых тестовых данных запустите все запросы в файле script.sql(выполняется при старте приложения)**
 
 ## Учетные записи по умолчанию
 Администратор:
